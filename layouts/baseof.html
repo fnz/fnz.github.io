@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="{{ site.Language.Locale | default "en" }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    {{- $description := .Description | default site.Params.description -}}
+    <meta name="description" content="{{ $description }}">
+    <link rel="canonical" href="{{ .Permalink }}">
+    <meta property="og:title" content="{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }}{{ end }}">
+    <meta property="og:description" content="{{ $description }}">
+    <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+    <meta property="og:url" content="{{ .Permalink }}">
+    <meta name="twitter:card" content="summary">
+    {{- with .OutputFormats.Get "RSS" }}
+    <link rel="alternate" type="application/rss+xml" title="{{ site.Title }}" href="{{ .RelPermalink }}">
+    {{- end }}
+    <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
+    {{- with resources.Get "css/main.css" }}
+      {{- $style := . | minify | fingerprint }}
+    <link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}">
+    {{- end }}
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="shell header-inner">
+        <a class="site-name" href="{{ site.Home.RelPermalink }}">{{ site.Title }}</a>
+        <nav aria-label="Main navigation">
+          <ul>
+            <li><a href="https://www.linkedin.com/in/victor-komarov/">LinkedIn</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main class="shell">
+      {{ block "main" . }}{{ end }}
+    </main>
+
+    <footer class="site-footer">
+      <div class="shell footer-inner">
+        <span>&copy; {{ now.Year }} {{ site.Title }}</span>
+        {{- with site.Home.OutputFormats.Get "RSS" }}
+        <a href="{{ .RelPermalink }}">RSS</a>
+        {{- end }}
+      </div>
+    </footer>
+  </body>
+</html>

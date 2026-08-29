@@ -1,0 +1,8 @@
+{{ define "main" }}
+  <header class="page-header">
+    <h1>{{ if eq .Section "posts" }}Writing{{ else }}{{ .Title }}{{ end }}</h1>
+    {{ with .Content }}<div class="page-description">{{ . }}</div>{{ end }}
+  </header>
+
+  {{ partial "post-archive.html" .Pages }}
+{{ end }}

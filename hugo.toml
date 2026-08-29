@@ -1,0 +1,26 @@
+baseURL = 'https://victorkomarov.com/'
+locale = 'en-GB'
+title = 'Victor Komarov'
+enableRobotsTXT = true
+
+[params]
+  description = 'Writing about machine learning systems, performance, software engineering, and management.'
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = false
+  [markup.highlight]
+    lineNos = false
+    noClasses = true
+    style = 'github'
+
+[outputs]
+  home = ['HTML', 'RSS']
+  section = ['HTML', 'RSS']
+  taxonomy = ['HTML', 'RSS']
+  term = ['HTML', 'RSS']
+
+[permalinks]
+  [permalinks.page]
+    posts = '/:slug/'

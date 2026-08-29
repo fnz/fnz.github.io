@@ -1,0 +1,7 @@
+<li class="post-row">
+  <div>
+    <a class="post-title" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+    {{ with .Description }}<p>{{ . }}</p>{{ end }}
+  </div>
+  {{ if not .Date.IsZero }}<time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 Jan 2006" }}</time>{{ end }}
+</li>
