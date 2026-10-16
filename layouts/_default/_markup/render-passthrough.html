@@ -1,0 +1,2 @@
+{{- $options := dict "displayMode" (eq .Type "block") -}}
+{{- transform.ToMath .Inner $options -}}

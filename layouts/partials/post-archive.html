@@ -1,15 +1,10 @@
 {{ if . }}
   <div class="archive">
-    {{ range .ByDate.Reverse.GroupByDate "2006" }}
-      <section class="archive-year" aria-labelledby="year-{{ .Key }}">
-        <h2 id="year-{{ .Key }}">{{ .Key }}</h2>
-        <ol class="post-list">
-          {{ range .Pages }}
-            {{ partial "post-row.html" . }}
-          {{ end }}
-        </ol>
-      </section>
-    {{ end }}
+    <ol class="post-list">
+      {{ range .ByDate.Reverse }}
+        {{ partial "post-row.html" . }}
+      {{ end }}
+    </ol>
   </div>
 {{ else }}
   <p class="empty-state">Under construction. Stay tuned.</p>

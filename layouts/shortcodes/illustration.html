@@ -1,0 +1,14 @@
+{{- $src := .Get "src" -}}
+{{- $alt := .Get "alt" | default "" -}}
+{{- $caption := .Get "caption" -}}
+<figure class="article-illustration{{ if .Get "wide" }} article-illustration--wide{{ end }}">
+  <img
+    src="{{ $src | safeURL }}"
+    alt="{{ $alt }}"
+    {{ with .Get "width" }}width="{{ . }}"{{ end }}
+    {{ with .Get "height" }}height="{{ . }}"{{ end }}
+    loading="lazy"
+    decoding="async"
+  >
+  {{ with $caption }}<figcaption>{{ . }}</figcaption>{{ end }}
+</figure>

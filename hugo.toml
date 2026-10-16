@@ -2,12 +2,19 @@ baseURL = 'https://victorkomarov.com/'
 locale = 'en-GB'
 title = 'Victor Komarov'
 enableRobotsTXT = true
+disableKinds = ['taxonomy', 'term']
 
 [params]
   description = 'Writing about machine learning systems, performance, software engineering, and management.'
 
 [markup]
   [markup.goldmark]
+    [markup.goldmark.extensions]
+      [markup.goldmark.extensions.passthrough]
+        enable = true
+        [markup.goldmark.extensions.passthrough.delimiters]
+          block = [['\[', '\]'], ['$$', '$$']]
+          inline = [['\(', '\)']]
     [markup.goldmark.renderer]
       unsafe = false
   [markup.highlight]
@@ -18,8 +25,6 @@ enableRobotsTXT = true
 [outputs]
   home = ['HTML', 'RSS']
   section = ['HTML', 'RSS']
-  taxonomy = ['HTML', 'RSS']
-  term = ['HTML', 'RSS']
 
 [permalinks]
   [permalinks.page]

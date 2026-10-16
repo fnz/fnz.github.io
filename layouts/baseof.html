@@ -4,6 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="color-scheme" content="light dark">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&amp;display=swap">
     {{- $description := .Description | default site.Params.description -}}
     <meta name="description" content="{{ $description }}">
     <link rel="canonical" href="{{ .Permalink }}">
@@ -28,6 +31,9 @@
         <nav aria-label="Main navigation">
           <ul>
             <li><a href="https://www.linkedin.com/in/victor-komarov/">LinkedIn</a></li>
+            {{- with site.Home.OutputFormats.Get "RSS" }}
+            <li><a href="{{ .RelPermalink }}">RSS</a></li>
+            {{- end }}
           </ul>
         </nav>
       </div>
@@ -36,15 +42,6 @@
     <main class="shell">
       {{ block "main" . }}{{ end }}
     </main>
-
-    <footer class="site-footer">
-      <div class="shell footer-inner">
-        <span>&copy; {{ now.Year }} {{ site.Title }}</span>
-        {{- with site.Home.OutputFormats.Get "RSS" }}
-        <a href="{{ .RelPermalink }}">RSS</a>
-        {{- end }}
-      </div>
-    </footer>
 
     <!-- Cloudflare Web Analytics -->
     <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"ecf1440c187d4828b32e0719976463be"}'></script>
